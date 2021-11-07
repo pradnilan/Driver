@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Bootstrap to Thymeleaf</title>
+
+    <!-- Latest compiled and minified CSS -->
+  <!--  <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+          crossorigin="anonymous">-->
+
+    <script type="text/javascript" th:src="@{js/jquery.js}"></script>
+    <script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" >
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+</head>
+<body>
+
+<h3 th:text="${msg}"></h3>
+
+<div class="container">
+    <div class="row">
+        <table class="table table-responsive table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>Sensor ID</th>
+                <th>Time Stamp</th>
+                <th>Voltage</th>
+                <th>Temperature</th>
+                <th>Relative Humidity</th>
+                <th>State Code</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="sensor : ${latestsensors}">
+                <td th:text="${sensor.sensorId}"></td>
+                <td th:text="${sensor.getTs()}"></td>
+                <td th:text="${sensor.getVolt().getValue()+' '+sensor.getVolt().getUnit()}"></td>
+                <td th:text="${sensor.getTemp().getValue()+' '+sensor.getTemp().getUnit()}"></td>
+                <td th:text="${sensor.getRh().getValue()+' '+sensor.getRh().getUnit()}"></td>
+                <td th:text="${sensor.getStateCode()}"></td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
+

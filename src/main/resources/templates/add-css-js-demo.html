@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add CS & JS to Thymeleaf</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{js/actions.js}"></script>
+</head>
+<body>
+<h2>Heading</h2>
+<p>This is to demo paragraph & <strong>string</strong> from CSS</p>
+
+<button type="button" th:onclick="demo()">Show Alert</button>
+
+</body>
+</html>

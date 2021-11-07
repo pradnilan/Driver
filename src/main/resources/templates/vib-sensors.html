@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Vibration</title>
+
+    <!-- Latest compiled and minified CSS -->
+  <!--  <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+          crossorigin="anonymous">-->
+
+    <script type="text/javascript" th:src="@{js/jquery.js}"></script>
+    <script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" >
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+</head>
+<body>
+
+<div style="height:1000px; width: 1000px; margin: auto; background-color: whitesmoke">
+
+    <div class="container-fluid" >
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link" href="/index">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/sensors/temp/latest">Temperature</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/sensors/vib/latest">Vibration</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/config">Settings</a>
+            </li>
+        </ul>
+    </div>
+
+    <br>
+    <div class="bg-danger text-white font-weight-bold" style="margin-left: 25px">Vibration Sensors</div>
+    <br><br>
+
+    <div class="container" style="max-height:100%; max-width:95%; margin: auto">
+    <div class="row">
+        <table class="table table-responsive table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>Sensor ID</th>
+                <th>Time Stamp</th>
+                <th>Voltage</th>
+                <th>Temperature</th>
+                <th>Acceleration RMS</th>
+                <th>State Code</th>
+            </tr>
+            </thead>
+            <tbody>
+
+
+            <!--/*@thymesVar id="latestsensors" type="Class50"*/-->
+            <tr th:each="sensor : ${latestsensors}">
+                <td th:text="${sensor.sensorId}"></td>
+                <td th:text="${sensor.getTs()}"></td>
+                <td th:text="${sensor.getVolt().getValue()+' '+sensor.getVolt().getUnit()}"></td>
+                <td th:text="${sensor.getTemp().getValue()+' '+sensor.getTemp().getUnit()}"></td>
+                <td th:text="${sensor.getAccRms().getValue()+' '+sensor.getAccRms().getUnit()}"></td>
+                <td th:text="${sensor.getStateCode()}"></td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+</body>
+</html>
+
